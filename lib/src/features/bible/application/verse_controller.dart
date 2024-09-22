@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:dart_pptx/dart_pptx.dart';
 import 'package:flutter/material.dart';
+import 'package:open_document/open_document.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../data/bible_repository.dart';
@@ -17,12 +22,22 @@ class VerseController extends _$VerseController {
   }
 
   Future<void> findByChapter(int bcode, int cnum, int vnm) async {
-    state = const AsyncLoading();
-    state = await AsyncValue.guard(() async {
-      final verses = await _bibleRepository.findByChapter(bcode, cnum, vnm);
+    final pres = PowerPoint();
 
-      debugPrint('verses: ${verses.length}');
-      return verses;
-    });
+    pres.addTitleSlide(
+      title: TextValue.uniform('Bible'),
+    );
+
+    final bytes = await pres.save();
+    if (bytes != null) {
+      final tempDir = await getTemporaryDirectory();
+
+      File('${tempDir.path}/hello.pptx').writeAsBytesSync(bytes);
+      final file = File('${tempDir.path}/hello.pptx');
+      // await OpenFile.open(file.path);
+      debugPrint(file.path);
+      await OpenDocument.openDocument(filePath: file.path);
+    }
+    // await OpenFile.open(pres);
   }
 }
