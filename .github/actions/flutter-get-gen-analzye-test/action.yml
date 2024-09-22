@@ -1,0 +1,15 @@
+# 
+name: "Flutter Get, Gen, Analzye, and Test"
+description: "Runs flutter pub get, build_runner build -d, flutter analyze, and flutter test."
+runs:
+  using: "composite"
+  steps:
+      - name: Get, Gen, Analzye, and Test
+        shell: bash
+        run: |
+          flutter pub get
+          dart run build_runner build -d
+          flutter analyze --no-pub 
+          flutter test --no-pub
+
+# 

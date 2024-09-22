@@ -1,0 +1,28 @@
+{
+	"Bottom navigation item": {
+		"scope": "dart",
+		"prefix": "naviBottomItem",
+		"body": [
+			"NavigationItem(",
+			"  icon: Icons.${1}",
+			"  label: '${2}',",
+			"  routeName: AppRoute.${3}.name,",
+			")"
+		],
+		"description": "Create a bottom navigation item"
+	},
+
+	"drawer item": {
+		"scope": "dart",
+		"prefix": "naviDrawerItem",
+		"body": [
+			"DrawerItem(",
+			"  unselectedIcon: Icons.${1},",
+			"  selectedIcon: Icons.${2}",
+			"  label: '${3}',",
+			"  routeName: AppRoute.${4}.name,",
+			")"
+		],
+		"description": "Create a drawer item"
+	},
+}

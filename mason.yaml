@@ -1,0 +1,5 @@
+bricks:
+  bundle:
+    git:
+      url: "https://github.com/thetanz/flutter_mason_bricks.git"
+      path: bundle

@@ -1,0 +1,52 @@
+# 
+name: "Install and Configure Flutter"
+description: "Installs Flutter using the version specified in .fvmrc, or the stable version if it is not found."
+outputs:
+  version:
+    description: "Flutter version."
+    value: ${{ steps.get-version.outputs.version }}
+runs:
+  using: "composite"
+  steps:
+    # Required for package_info_plus
+    # TODO(hamishnorton): Figure out how to cache Java
+    - name: Set up JDK 17 
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'adopt'
+        java-version: '17'
+      
+    - name: Verify Java version
+      shell: bash
+      run: |
+        java -version
+        which java
+
+    - name: Get Flutter version
+      id: get-version
+      shell: bash
+      run: |
+        if [ ! -f .fvmrc ]; then
+          echo "Error: No .fvmrc file found. No Flutter version specified."
+          exit 1
+        fi
+        FLUTTER_VERSION=$(jq -r '.flutter' .fvmrc)
+        echo "FLUTTER_VERSION=$FLUTTER_VERSION" >> $GITHUB_ENV
+        echo "version=$(echo $FLUTTER_VERSION)" >> $GITHUB_OUTPUT
+        echo "The Flutter version is $FLUTTER_VERSION from the .fvmrc file."
+          
+    - name: Install Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ env.FLUTTER_VERSION }}
+        cache: trueactions/setup-java@v4
+
+    - name: Configure Flutter
+      shell: bash
+      run: |
+        flutter config --disable-analytics --no-cli-animations
+        flutter --version
+        flutter config --list
+
+
+# 

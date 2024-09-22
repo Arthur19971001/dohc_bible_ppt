@@ -1,0 +1,23 @@
+targets:
+  $default:
+    sources:
+      include:
+        - "pubspec.*"
+        - "$package$"
+        - "lib/**"
+        - "test/**"
+    builders:
+      riverpod_generator:
+        enabled: true
+        generate_for:
+          include:
+            - "lib/**_controller.dart"
+            - "lib/**_gateway.dart"
+            - "lib/**_provider.dart"
+            - "lib/**_repository.dart"
+            - "test/**_provider.dart"
+      widgetbook_generator:use_case_builder:
+        enabled: true
+        generate_for:
+          include:
+            - "lib/**.dart"

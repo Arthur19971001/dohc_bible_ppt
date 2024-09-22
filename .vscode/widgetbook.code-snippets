@@ -1,0 +1,32 @@
+{
+  "Widgetbook: Use Case": {
+    "scope": "dart",
+    "prefix": "widgetbookUseCase",
+    "description": "Create a widgetbook use case",
+    "body": [
+      "@widgetbook.UseCase(",
+      "\tname: '${1}',",
+      "\ttype: ${2},",
+      ")",
+      "${2} ${1/(.*)/${1:/camelcase}/}(BuildContext context) {",
+      "\treturn ${1}($3);",
+      "}"
+    ]
+  },
+  "Widgetbook: Use Case with import": {
+    "scope": "dart",
+    "prefix": "widgetbookUseCasewi",
+    "description": "Create a widgetbook use case with import",
+    "body": [
+      "import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;",
+      "",
+      "@widgetbook.UseCase(",
+      "\tname: '${1}',",
+      "\ttype: ${2},",
+      ")",
+      "${2} ${1/(.*)/${1:/camelcase}/}(BuildContext context) {",
+      "\treturn ${1}($3);",
+      "}"
+    ]
+  }
+}

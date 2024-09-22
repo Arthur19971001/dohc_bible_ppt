@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "dohc_bible_ppt",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "dohc_bible_ppt (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "dohc_bible_ppt (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "widgetbook",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/widgetbook.dart"
+    }
+  ]
+}

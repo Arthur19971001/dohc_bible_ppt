@@ -1,0 +1,12 @@
+{
+    "dart.flutterSdkPath": ".fvm/versions/3.24.3",
+    "dart.flutterGenerateLocalizationsOnSave": "all",
+    "dart.lineLength": 80,
+    "dart.renameFilesWithClasses": "always",
+    "files.watcherExclude": {
+        "**/.fvm": true
+    },
+    "search.exclude": {
+        "**/.fvm": true
+    }
+}

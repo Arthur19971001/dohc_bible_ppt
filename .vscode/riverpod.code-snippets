@@ -1,0 +1,62 @@
+{
+  "Riverpod: simple instance with imports": {
+    "prefix": "riverpodproviderwi",
+    "description": "Creates a simple Provider with imports",
+    "body": [
+      "import 'package:riverpod_annotation/riverpod_annotation.dart';",
+      "",
+      "part '${TM_FILENAME_BASE}.g.dart';",
+      "",
+      "@riverpod",
+      "$1 $2(${2/(.*)/${1:/capitalize}/}Ref ref) {",
+      "\treturn $3;",
+      "}"
+    ]
+  },
+  "Riverpod: imports & part": {
+    "prefix": "riverpodimports",
+    "description": "Adds imports and part statement",
+    "body": [
+      "import 'package:riverpod_annotation/riverpod_annotation.dart';",
+      "",
+      "part '${TM_FILENAME_BASE}.g.dart';"
+    ]
+  },
+  "Riverpod Consumer Stateless with imports": {
+    "prefix": "riverpodstlcwi",
+    "description": "Create a ConsumerStatelessWidget with imports",
+    "body": [
+      "import 'package:flutter/material.dart';",
+      "import 'package:flutter_riverpod/flutter_riverpod.dart';",
+      "",
+      "class $1 extends ConsumerWidget {",
+      "\tconst $1({super.key});\n",
+      "\t@override",
+      "\tWidget build(BuildContext context, WidgetRef ref) {",
+      "\t\treturn Container();",
+      "\t}",
+      "}"
+    ]
+  },
+  "Riverpod Consumer Stateful with imports": {
+    "scope": "dart",
+    "prefix": "riverpodstfcwi",
+    "description": "Create a ConsumerStatefulWidget with imports",
+    "body": [
+      "import 'package:flutter/material.dart';",
+      "import 'package:flutter_riverpod/flutter_riverpod.dart';",
+      "",
+      "class $1 extends ConsumerStatefulWidget {",
+      "\tconst $1({super.key});\n",
+      "\t@override",
+      "\tConsumerState<ConsumerStatefulWidget> createState() => _$1State();",
+      "}\n",
+      "class _$1State extends ConsumerState<$1> {\n",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn Container();",
+      "\t}",
+      "}"
+    ]
+  }
+}
