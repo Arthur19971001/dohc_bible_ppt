@@ -3,8 +3,6 @@ sealed class BibleAPIException implements Exception {
   BibleAPIException(this.message);
 }
 
-class NoInternetConnectionException extends BibleAPIException {
-  NoInternetConnectionException() : super('No Internet connection');
+class NotFoundException extends BibleAPIException {
+  NotFoundException() : super('Not Found');
 }
-
-// Add the api specific exceptions here
