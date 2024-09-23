@@ -75,10 +75,6 @@ class BibleRepository {
         final file = File(
             '${tempDirectory.path}/${bible.name}${gaeVerses.first.cnum}:${gaeVerses.first.vnum}-${gaeVerses.last.cnum}:${gaeVerses.last.vnum}.pptx');
 
-        if (file.existsSync()) {
-          file.deleteSync();
-        }
-
         file.writeAsBytesSync(bytes);
 
         await OpenDocument.openDocument(filePath: file.path);
