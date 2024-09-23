@@ -1,12 +1,44 @@
 {
-    "dart.flutterSdkPath": ".fvm/versions/3.24.3",
-    "dart.flutterGenerateLocalizationsOnSave": "all",
-    "dart.lineLength": 80,
-    "dart.renameFilesWithClasses": "always",
-    "files.watcherExclude": {
-        "**/.fvm": true
+  "dart.flutterSdkPath": ".fvm/versions/3.24.3",
+  "[dart]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit",
+      "source.sortMembers": "explicit"
     },
-    "search.exclude": {
-        "**/.fvm": true
-    }
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
+  },
+  "dart.flutterGenerateLocalizationsOnSave": "all",
+  "dart.lineLength": 80,
+  "dart.openDevTools": "flutter",
+  "dart.previewFlutterUiGuides": true,
+  "dart.renameFilesWithClasses": "always",
+  "dart.warnWhenEditingFilesOutsideWorkspace": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.insertSpaces": false,
+  "editor.stickyScroll.enabled": true,
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "explorer.fileNesting.patterns": {
+    "*.dart": "${capture}.g.dart, ${capture}.directories.g.dart, ${capture}.freezed.dart"
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "files.autoSave": "afterDelay",
+  "files.watcherExclude": {
+    "**/.fvm": true
+  },
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  "java.configuration.updateBuildConfiguration": "automatic"
 }
