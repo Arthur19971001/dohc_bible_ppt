@@ -11,10 +11,16 @@ class SelectBibleWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final TextEditingController firstTextEditCtr =
+    final TextEditingController firstVerseTextEditCtr = TextEditingController(
+      text: '1',
+    );
+    final TextEditingController lastVerseTextEditCtr = TextEditingController(
+      text: '${bible.chapterCount}',
+    );
+    final TextEditingController firstChapterTextEditCtr =
         TextEditingController(text: '1');
-    final TextEditingController lastTextEditCtr =
-        TextEditingController(text: '${bible.chapterCount}');
+    final TextEditingController lastChapterTextEditCtr =
+        TextEditingController(text: '1');
 
     final verseController = ref.watch(verseControllerProvider.notifier);
 
@@ -28,32 +34,58 @@ class SelectBibleWidget extends ConsumerWidget {
             SizedBox(
               width: 50,
               child: TextField(
-                controller: firstTextEditCtr,
+                controller: firstVerseTextEditCtr,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                 ),
               ),
             ),
+            const Text('장'),
+            SizedBox(
+              width: 50,
+              child: TextField(
+                controller: firstChapterTextEditCtr,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            const Text('절'),
             defaultSeparator,
             const Text('To:'),
             SizedBox(
               width: 50,
               child: TextField(
-                controller: lastTextEditCtr,
+                controller: lastVerseTextEditCtr,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                 ),
               ),
             ),
+            const Text('장'),
+            SizedBox(
+              width: 50,
+              child: TextField(
+                controller: lastChapterTextEditCtr,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            const Text('절'),
             defaultSeparator,
             ElevatedButton(
               onPressed: () async {
                 await verseController.findByChapter(
                   bible.bcode,
-                  int.parse(firstTextEditCtr.text),
-                  int.parse(lastTextEditCtr.text),
+                  int.parse(firstVerseTextEditCtr.text),
+                  int.parse(firstChapterTextEditCtr.text),
+                  int.parse(lastVerseTextEditCtr.text),
+                  int.parse(lastChapterTextEditCtr.text),
                 );
               },
               child: const Text('Generate'),

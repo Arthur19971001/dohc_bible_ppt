@@ -25,15 +25,25 @@ class BibleRepository {
 
   BibleRepository(this.db);
 
-  Future<List<Verse>> findByChapter(
-      String vcode, int bcode, int cnum, int vnm) async {
-    final results = await db.query(
-      'verses',
-      columns: ['vcode', 'bcode', 'cnum', 'vnum', 'content'],
-      where: 'vcode = ? and bcode = ? and cnum = ? and vnum <= ?',
-      whereArgs: [vcode, bcode, cnum, vnm],
-      orderBy: 'vnum asc',
-    );
+  Future<List<Verse>> findByChapter(String vcode, int bcode, int firstCnum,
+      int firstVnum, int lastCnum, int lastVnum) async {
+    late final List<Map<String, Object?>> results = [];
+
+    for (var cnum = firstCnum; cnum <= lastCnum; cnum++) {
+      final first = cnum == firstCnum ? firstVnum : 1;
+      final last = cnum == lastCnum ? lastVnum : 999;
+
+      final result = await db.query(
+        'verses',
+        columns: ['vcode', 'bcode', 'cnum', 'vnum', 'content'],
+        where:
+            'vcode = ? and bcode = ? and cnum = ? and vnum >= ? and vnum <= ?',
+        whereArgs: [vcode, bcode, cnum, first, last],
+        orderBy: 'vnum asc',
+      );
+
+      results.addAll(result);
+    }
 
     try {
       final verses = results.map(Verse.fromMap).toList();
