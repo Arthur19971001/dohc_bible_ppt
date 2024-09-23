@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:dart_pptx/dart_pptx.dart';
+import 'package:open_document/open_document.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -54,21 +58,28 @@ class BibleRepository {
     }
 
     final bytes = await ppt.save();
-
     if (bytes != null) {
-      await Share.shareXFiles(
-        [
-          XFile.fromData(
-            bytes,
-            name: 'bible_generator.pptx',
-            mimeType:
-                'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-            lastModified: DateTime.now(),
-            length: bytes.length,
-          ),
-        ],
-        text: 'Presentation',
-      );
+      if (Platform.isWindows) {
+        final tempDirectory = await getTemporaryDirectory();
+        final file = File('${tempDirectory.path}/bible_generator.pptx')
+          ..writeAsBytesSync(bytes);
+
+        await OpenDocument.openDocument(filePath: file.path);
+      } else {
+        await Share.shareXFiles(
+          [
+            XFile.fromData(
+              bytes,
+              name: 'bible_generator.pptx',
+              mimeType:
+                  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+              lastModified: DateTime.now(),
+              length: bytes.length,
+            ),
+          ],
+          text: 'Presentation',
+        );
+      }
     }
   }
 
