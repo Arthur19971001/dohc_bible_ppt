@@ -7,7 +7,7 @@ part of 'gae_bibles_controller.dart';
 // **************************************************************************
 
 String _$gaeBiblesContorllerHash() =>
-    r'f189205927602979ed691d67d76e779e2ec08fcf';
+    r'c466b31659fbe71f5986e56707d7b88933e1c1be';
 
 /// See also [GaeBiblesContorller].
 @ProviderFor(GaeBiblesContorller)

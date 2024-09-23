@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
-    <true/>
+  <true/>
+	<key>UIFileSharingEnabled</key>
+  <true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

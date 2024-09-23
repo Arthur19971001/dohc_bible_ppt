@@ -1,9 +1,3 @@
-import 'dart:io';
-
-import 'package:dart_pptx/dart_pptx.dart';
-import 'package:flutter/material.dart';
-import 'package:open_document/open_document.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../data/bible_repository.dart';
@@ -22,22 +16,13 @@ class VerseController extends _$VerseController {
   }
 
   Future<void> findByChapter(int bcode, int cnum, int vnm) async {
-    final pres = PowerPoint();
-
-    pres.addTitleSlide(
-      title: TextValue.uniform('Bible'),
-    );
-
-    final bytes = await pres.save();
-    if (bytes != null) {
-      final tempDir = await getTemporaryDirectory();
-
-      File('${tempDir.path}/hello.pptx').writeAsBytesSync(bytes);
-      final file = File('${tempDir.path}/hello.pptx');
-      // await OpenFile.open(file.path);
-      debugPrint(file.path);
-      await OpenDocument.openDocument(filePath: file.path);
-    }
-    // await OpenFile.open(pres);
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      final gaeVerses = await _bibleRepository.findByChapter('GAE',bcode, cnum, vnm);
+      final nivVerses = await _bibleRepository.findByChapter('NIV',bcode, cnum, vnm);
+  
+      await _bibleRepository.generatePpt(gaeVerses, nivVerses);
+      return gaeVerses;
+    });
   }
 }
