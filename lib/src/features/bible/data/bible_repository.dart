@@ -53,7 +53,8 @@ class BibleRepository {
     }
   }
 
-  Future<void> generatePpt(List<Verse> gaeVerses, List<Verse> nivVerses) async {
+  Future<void> generatePpt(
+      List<Verse> gaeVerses, List<Verse> nivVerses, Bible bible) async {
     final ppt = PowerPoint();
 
     for (var i = 0; i < gaeVerses.length; i++) {
@@ -71,8 +72,15 @@ class BibleRepository {
     if (bytes != null) {
       if (Platform.isWindows) {
         final tempDirectory = await getTemporaryDirectory();
-        final file = File('${tempDirectory.path}/bible_generator.pptx')
-          ..writeAsBytesSync(bytes);
+        final file = File(
+            '${tempDirectory.path}/${bible.name}${gaeVerses.first.cnum}:${gaeVerses.first.vnum}-${gaeVerses.last.cnum}:${gaeVerses.last.vnum}.pptx')
+          // ..writeAsBytesSync(bytes);
+
+        if (file.existsSync()) {
+          file.deleteSync();
+        }
+
+        file.writeAsBytesSync(bytes);
 
         await OpenDocument.openDocument(filePath: file.path);
       } else {

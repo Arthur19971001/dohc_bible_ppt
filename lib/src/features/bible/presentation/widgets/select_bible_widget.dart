@@ -81,7 +81,7 @@ class SelectBibleWidget extends ConsumerWidget {
             ElevatedButton(
               onPressed: () async {
                 await verseController.findByChapter(
-                  bible.bcode,
+                  bible,
                   int.parse(firstVerseTextEditCtr.text),
                   int.parse(firstChapterTextEditCtr.text),
                   int.parse(lastVerseTextEditCtr.text),

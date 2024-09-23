@@ -15,14 +15,14 @@ class VerseController extends _$VerseController {
     return [];
   }
 
-  Future<void> findByChapter(int bcode, int firstCnum,
+  Future<void> findByChapter(Bible bible, int firstCnum,
       int firstVnum, int lastCnum, int lastVnum) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      final gaeVerses = await _bibleRepository.findByChapter('GAE',bcode, firstCnum, firstVnum, lastCnum, lastVnum);
-      final nivVerses = await _bibleRepository.findByChapter('NIV', bcode, firstCnum, firstVnum, lastCnum, lastVnum);
+      final gaeVerses = await _bibleRepository.findByChapter('GAE', bible.bcode, firstCnum, firstVnum, lastCnum, lastVnum);
+      final nivVerses = await _bibleRepository.findByChapter('NIV', bible.bcode, firstCnum, firstVnum, lastCnum, lastVnum);
   
-      await _bibleRepository.generatePpt(gaeVerses, nivVerses);
+      await _bibleRepository.generatePpt(gaeVerses, nivVerses, bible);
       return gaeVerses;
     });
   }
