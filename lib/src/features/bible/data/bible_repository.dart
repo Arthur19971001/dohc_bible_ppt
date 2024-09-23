@@ -1,7 +1,7 @@
 import 'package:dart_pptx/dart_pptx.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import '../../../bible_db_provider.dart';
 import '../domain/domain.dart';

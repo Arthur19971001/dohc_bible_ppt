@@ -1,15 +1,18 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 part 'bible_db_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 Future<Database> bibleDbProvider(BibleDbProviderRef ref) async {
+  sqfliteFfiInit();
+
+  databaseFactory = databaseFactoryFfi;
+
   final databasePath = await getDatabasesPath();
   final dbPath = join(databasePath, 'holybible.db');
 
