@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dart_pptx/dart_pptx.dart';
 import 'package:open_document/open_document.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
@@ -71,11 +72,14 @@ class BibleRepository {
     final bytes = await ppt.save();
     if (bytes != null) {
       if (Platform.isWindows) {
-        final tempDirectory = await getTemporaryDirectory();
-        final file = File(
-            '${tempDirectory.path}/${bible.name}${gaeVerses.first.cnum}:${gaeVerses.first.vnum}-${gaeVerses.last.cnum}:${gaeVerses.last.vnum}.pptx');
+        final downloadDirectory = await getDownloadsDirectory();
 
-        file.writeAsBytesSync(bytes);
+        final filePath = join(
+          downloadDirectory!.path,
+          '${bible.name}${gaeVerses.first.cnum}장${gaeVerses.first.vnum}절-${gaeVerses.last.cnum}장${gaeVerses.last.vnum}절.pptx',
+        );
+
+        final file = File(filePath)..writeAsBytesSync(bytes);
 
         await OpenDocument.openDocument(filePath: file.path);
       } else {
