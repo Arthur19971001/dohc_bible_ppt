@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../data/bible_repository.dart';
@@ -19,10 +18,11 @@ class VerseController extends _$VerseController {
   Future<void> findByChapter(int bcode, int cnum, int vnm) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      final verses = await _bibleRepository.findByChapter(bcode, cnum, vnm);
-
-      debugPrint('verses: ${verses.length}');
-      return verses;
+      final gaeVerses = await _bibleRepository.findByChapter('GAE',bcode, cnum, vnm);
+      final nivVerses = await _bibleRepository.findByChapter('NIV',bcode, cnum, vnm);
+  
+      await _bibleRepository.generatePpt(gaeVerses, nivVerses);
+      return gaeVerses;
     });
   }
 }

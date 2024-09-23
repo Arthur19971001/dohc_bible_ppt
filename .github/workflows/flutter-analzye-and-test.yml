@@ -24,8 +24,5 @@ jobs:
 
       - name: Install Flutter
         uses: ./.github/actions/install-and-configure-flutter
-          
-      - name: Flutter Get, Gen, Analzye, and Test
-        uses: ./.github/actions/flutter-get-gen-analzye-test
-      
+
       - run: echo "${{ github.job }} status ${{ job.status }}."

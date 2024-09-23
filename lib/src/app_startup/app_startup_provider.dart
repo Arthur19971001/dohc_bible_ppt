@@ -15,5 +15,7 @@ Future<void> appStartup(AppStartupRef ref) async {
   });
 
   // App initialization code
-  await Future.wait<void>([ref.watch(bibleDbProviderProvider.future)]);
+  await Future.wait<void>([
+    ref.watch(bibleDbProviderProvider.future),
+  ]);
 }
