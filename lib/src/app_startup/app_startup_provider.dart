@@ -13,12 +13,10 @@ Future<void> appStartup(AppStartupRef ref) async {
   ref.onDispose(() {
     // ensure dependent providers are disposed as well
     ref.invalidate(bibleDbProviderProvider);
-    ref.invalidate(pptProviderProvider);
   });
 
   // App initialization code
   await Future.wait<void>([
     ref.watch(bibleDbProviderProvider.future),
-    ref.watch(pptProviderProvider.future),
   ]);
 }
