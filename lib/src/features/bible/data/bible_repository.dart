@@ -73,8 +73,7 @@ class BibleRepository {
       if (Platform.isWindows) {
         final tempDirectory = await getTemporaryDirectory();
         final file = File(
-            '${tempDirectory.path}/${bible.name}${gaeVerses.first.cnum}:${gaeVerses.first.vnum}-${gaeVerses.last.cnum}:${gaeVerses.last.vnum}.pptx')
-          // ..writeAsBytesSync(bytes);
+            '${tempDirectory.path}/${bible.name}${gaeVerses.first.cnum}:${gaeVerses.first.vnum}-${gaeVerses.last.cnum}:${gaeVerses.last.vnum}.pptx');
 
         if (file.existsSync()) {
           file.deleteSync();
