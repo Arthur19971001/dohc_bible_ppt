@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../bible_db_provider.dart';
-import '../ppt_provider.dart';
 
 part 'app_startup_provider.g.dart';
 
