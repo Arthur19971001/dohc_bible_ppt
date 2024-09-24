@@ -1,0 +1,34 @@
+name: "Macos Build"
+description: "Builds an Zip for Macos using Flutter."
+inputs:
+  github-token:
+    description: "GitHub Token"
+    required: true
+  ref-name:
+    description: "GitHub Ref Name"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Enable macOS build
+        shell: bash
+        run: flutter config --enable-macos-desktop
+
+    - name: Build artifacts
+        shell: bash
+        run: flutter build macos --release
+    
+    - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        with:
+          type: 'zip'
+          filename: DohcBiblePpt-${{input.ref_name}}-macos.zip
+          directory: build/macos/Build/Products/Release
+          
+    - name: macOS Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ inputs.token }}
+        with:
+          files: build/macos/Build/Products/Release/DohcBiblePpt-${{input.ref_name}}-macos.zip

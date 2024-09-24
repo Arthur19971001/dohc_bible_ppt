@@ -1,4 +1,3 @@
-# 
 name: "Install and Configure Flutter"
 description: "Installs Flutter using the version specified in .fvmrc, or the stable version if it is not found."
 outputs:
@@ -48,5 +47,3 @@ runs:
         flutter --version
         flutter config --list
 
-
-# 

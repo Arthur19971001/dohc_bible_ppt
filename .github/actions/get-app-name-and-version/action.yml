@@ -1,0 +1,40 @@
+name: "Get App Name and Version"
+description: "Get app name, version and build number from the pubspec.yaml file."
+outputs:
+  name:
+    description: "App name."
+    value: ${{ steps.get-name.outputs.name }}
+  version:
+    description: "App version."
+    value: ${{ steps.get-version.outputs.version }}
+  build-number:
+    description: "Build number."
+    value: ${{ steps.get-version.outputs.build-number }}
+runs:
+  using: "composite"
+  steps:
+    - name: Get App Name
+      id: get-name
+      shell: bash
+      run: |
+        APP_NAME=$(grep "^name:" pubspec.yaml | awk '{print $2}')
+        echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
+        echo "name=$(echo $APP_NAME)" >> $GITHUB_OUTPUT
+
+    - name: Get Full Version
+      id: get-full-version
+      shell: bash
+      run: |
+        echo "FULL_APP_VERSION=$(grep "^version:" pubspec.yaml | awk '{print $2}')" >> $GITHUB_ENV
+      
+    - name: Get App Version and Build Number
+      id: get-version
+      shell: bash
+      run: |
+        echo "FULL_APP_VERSION=$FULL_APP_VERSION"
+        VERSION=$(echo $FULL_APP_VERSION | cut -d'+' -f1)
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "version=$(echo $VERSION)" >> $GITHUB_OUTPUT
+        BUILD_NUMBER=$(echo $FULL_APP_VERSION | cut -d'+' -f2)
+        echo "BUILD_NUMBER=$BUILD_NUMBER" >> $GITHUB_ENV
+        echo "build-number=$(echo $BUILD_NUMBER)" >> $GITHUB_OUTPUT
