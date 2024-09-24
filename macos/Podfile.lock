@@ -1,6 +1,4 @@
 PODS:
-  - file_saver (0.0.1):
-    - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - open_document (0.0.1):
     - FlutterMacOS
@@ -11,15 +9,12 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - file_saver (from `Flutter/ephemeral/.symlinks/plugins/file_saver/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - open_document (from `Flutter/ephemeral/.symlinks/plugins/open_document/macos`)
   - path_provider_foundation (from `Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin`)
   - share_plus (from `Flutter/ephemeral/.symlinks/plugins/share_plus/macos`)
 
 EXTERNAL SOURCES:
-  file_saver:
-    :path: Flutter/ephemeral/.symlinks/plugins/file_saver/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
   open_document:
@@ -30,7 +25,6 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/share_plus/macos
 
 SPEC CHECKSUMS:
-  file_saver: 44e6fbf666677faf097302460e214e977fdd977b
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
   open_document: 3cfc9fd7661af2cb1157e09876f71aa1c8dba05b
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
