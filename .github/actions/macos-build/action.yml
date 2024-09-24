@@ -19,12 +19,16 @@ runs:
       run: flutter build macos --release
 
     - uses: actions/checkout@v4
-    - name: Install node and appdmg
+    - name: Use Node.js 18
       uses: actions/setup-node@v4
       with:
         node-version: 18
+    - name: npm install -g appdmg
       shell: bash
-      run: npm install -g appdmg
+      run: |
+        npm install -g appdmg
+        appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
+
     # - run: appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
     
     # - name: Build dmg
