@@ -23,6 +23,7 @@ runs:
       run: ls -R build/macos/Build/Products/Release
 
     - name: Move .app file
+      shell: bash
       run: mv build/macos/Build/Products/Release/dohc_bible_ppt.app installers/dmg_creator/dohc_bible_ppt.app
 
     # - name: Upload macOS app artifact
