@@ -40,4 +40,4 @@ runs:
       env:
           GITHUB_TOKEN: ${{ inputs.token }}
       with:
-        files: build/macos/Build/Products/Release/dohc_bible_ppt.dmg
+        files: /Users/runner/work/dohc_bible_ppt/dohc_bible_ppt/dohc_bible_ppt.dmg
