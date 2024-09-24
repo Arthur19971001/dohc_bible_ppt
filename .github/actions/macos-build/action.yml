@@ -23,9 +23,8 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: 18
-      shell: bash
     - run: npm install -g appdmg
-    - run: appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
+    # - run: appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
     
     # - name: Build dmg
     #   shell: bash
