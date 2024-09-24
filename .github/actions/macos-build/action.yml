@@ -22,11 +22,14 @@ runs:
       shell: bash
       run: ls -R build/macos/Build/Products/Release
 
-    - name: Upload macOS app artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: macos-app
-        path: build/macos/Build/Products/Release/dohc_bible_ppt.app
+    - name: Move .app file
+      run: mv build/macos/Build/Products/Release/dohc_bible_ppt.app installers/dmg_creator/dohc_bible_ppt.app
+
+    # - name: Upload macOS app artifact
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: macos-app
+    #     path: build/macos/Build/Products/Release/dohc_bible_ppt.app
 
     - uses: actions/checkout@v4
     - name: Use Node.js 18
