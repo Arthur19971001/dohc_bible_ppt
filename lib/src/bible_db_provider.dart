@@ -13,14 +13,14 @@ Future<Database> bibleDbProvider(BibleDbProviderRef ref) async {
 
   databaseFactory = databaseFactoryFfi;
 
-  final databasePath = await getDatabasesPath();
+  final databasePath = await databaseFactory.getDatabasesPath();
   final dbPath = join(databasePath, 'holybible.db');
 
-  final exists = await databaseExists(dbPath);
+  final exists = await databaseFactory.databaseExists(dbPath);
 
   if (!exists) {
     try {
-      await Directory(dirname(dbPath)).create(recursive: true);
+      Directory(dirname(dbPath)).createSync(recursive: true);
     } catch (_) {}
 
     final data = await rootBundle.load(url.join('assets', 'holybible.db'));
@@ -28,6 +28,13 @@ Future<Database> bibleDbProvider(BibleDbProviderRef ref) async {
         data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
     await File(dbPath).writeAsBytes(bytes, flush: true);
+  }
+
+  if (Platform.isWindows) {
+    return databaseFactory.openDatabase(
+      dbPath,
+      options: OpenDatabaseOptions(version: 1),
+    );
   }
 
   return openDatabase(
