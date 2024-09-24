@@ -19,6 +19,7 @@ runs:
       run: flutter build macos --release
     
     - name: List build directory contents
+      shell: bash
       run: ls -R build/macos/Build/Products/Release
 
     - name: Upload macOS app artifact
