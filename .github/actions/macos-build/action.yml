@@ -1,7 +1,7 @@
 name: "Macos Build"
 description: "Builds an Zip for Macos using Flutter."
 inputs:
-  github-token:
+  token:
     description: "GitHub Token"
     required: true
   ref-name:
