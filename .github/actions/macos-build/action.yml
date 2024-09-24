@@ -24,15 +24,15 @@ runs:
         name: 'dohc_bible_ppt'
         srcdir: 'build/macos/Build/Products/Release/dohc_bible_ppt.app'
 
-    - name: Compress DMG into ZIP
-      shell: bash
-      run: zip -r build/macos/Build/Products/Release/dohc_bible_ppt.zip build/macos/Build/Products/Release/dohc_bible_ppt.dmg
+    # - name: Compress DMG into ZIP
+    #   shell: bash
+    #   run: zip -r build/macos/Build/Products/Release/dohc_bible_ppt.zip build/macos/Build/Products/Release/dohc_bible_ppt.dmg
 
-    - name: Upload ZIP file
-      uses: actions/upload-artifact@v3
-      with:
-        name: macos-app
-        path: build/macos/Build/Products/Release/dohc_bible_ppt.zip
+    # - name: Upload ZIP file
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: macos-app
+    #     path: build/macos/Build/Products/Release/dohc_bible_ppt.zip
 
     - name: macOS Release
       uses: softprops/action-gh-release@v2
@@ -40,4 +40,4 @@ runs:
       env:
           GITHUB_TOKEN: ${{ inputs.token }}
       with:
-        files: build/macos/Build/Products/Release/dohc_bible_ppt.zip
+        files: build/macos/Build/Products/Release/dohc_bible_ppt.dmg
