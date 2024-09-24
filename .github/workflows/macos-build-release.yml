@@ -36,5 +36,5 @@ jobs:
       - name: Macos Build
         uses: ./.github/actions/macos-build
         with:
-          token: ${{ secrets.TOKEN }}
+          github-token: ${{ secrets.TOKEN }}
           ref-name: ${{ github.ref_name }}
