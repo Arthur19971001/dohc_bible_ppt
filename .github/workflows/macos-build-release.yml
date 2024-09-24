@@ -37,3 +37,4 @@ jobs:
         uses: ./.github/actions/macos-build
         with:
           ref-name: ${{ github.ref_name }}
+          token: ${{ secrets.TOKEN }}

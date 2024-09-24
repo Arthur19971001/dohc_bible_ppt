@@ -1,7 +1,7 @@
 name: "Macos Build"
 description: "Builds an Zip for Macos using Flutter."
 inputs:
-  github-token:
+  token:
     description: "GitHub Token"
     required: true
   ref-name:
@@ -28,5 +28,7 @@ runs:
     - name: macOS Release
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
+      env:
+          GITHUB_TOKEN: ${{ inputs.token }}
       with:
         files: build/macos/Build/Products/Release/DohcBiblePpt-${{inputs.ref_name}}-macos.zip
