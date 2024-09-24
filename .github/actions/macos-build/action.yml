@@ -25,15 +25,11 @@ runs:
         node-version: 18
     - name: npm install -g appdmg
       shell: bash
-      run: |
-        npm install -g appdmg
-        appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
-
-    # - run: appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
+      run: npm install -g appdmg
     
-    # - name: Build dmg
-    #   shell: bash
-    #   run: appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
+    - name: Build dmg
+      shell: bash
+      run: appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
 
     - name: Archive Release
       uses: thedoctor0/zip-release@master
