@@ -20,9 +20,9 @@ runs:
 
     - uses: actions/checkout@v4
     - name: Install node and appdmg
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: 18
     - run: npm install -g appdmg
     - run: appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
     
