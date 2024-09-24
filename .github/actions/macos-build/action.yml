@@ -18,6 +18,12 @@ runs:
       shell: bash
       run: flutter build macos --release
 
+    - name: Upload macOS app artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: macos-app
+        path: build/macos/Build/Products/Release/dohc_bible_ppt.app
+        
     - uses: actions/checkout@v4
     - name: Use Node.js 18
       uses: actions/setup-node@v4
