@@ -18,58 +18,55 @@ runs:
       shell: bash
       run: flutter build macos --release
     
-    # - name: List build directory contents
-    #   shell: bash
-    #   run: ls -R build/macos/Build/Products/Release
+    - name: Create DMG file
+      uses: QQxiaoming/create-dmg-action@v0.0.2
+      with:
+        name: 'dohc_bible_ppt'
+        srcdir: 'build/macos/Build/Products/Release/dohc_bible_ppt.app'
 
-    # - name: Move .app file
-    #   shell: bash
-    #   run: mv build/macos/Build/Products/Release/dohc_bible_ppt.app installers/dmg_creator/dohc_bible_ppt.app
+    - name: Compress DMG into ZIP
+      shell: bash
+      run: zip -r build/macos/Build/Products/Release/dohc_bible_ppt.zip build/macos/Build/Products/Release/dohc_bible_ppt.dmg
 
-    # - name: Upload macOS app artifact
-    #   uses: actions/upload-artifact@v3
+    - name: Upload ZIP file
+      uses: actions/upload-artifact@v2
+      with:
+        name: macos-app
+        path: build/macos/Build/Products/Release/dohc_bible_ppt.zip
+
+    # # - name: List build directory contents
+    # #   shell: bash
+    # #   run: ls -R build/macos/Build/Products/Release
+
+    # # - name: Move .app file
+    # #   shell: bash
+    # #   run: mv build/macos/Build/Products/Release/dohc_bible_ppt.app installers/dmg_creator/dohc_bible_ppt.app
+
+    # # - name: Upload macOS app artifact
+    # #   uses: actions/upload-artifact@v3
+    # #   with:
+    # #     name: macos-app
+    # #     path: build/macos/Build/Products/Release/dohc_bible_ppt.app
+
+    # - uses: actions/checkout@v4
+    # - name: Use Node.js 18
+    #   uses: actions/setup-node@v4
     #   with:
-    #     name: macos-app
-    #     path: build/macos/Build/Products/Release/dohc_bible_ppt.app
-
-    - uses: actions/checkout@v4
-    - name: Use Node.js 18
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-    - name: npm install -g appdmg
-      shell: bash
-      run: npm install -g appdmg
+    #     node-version: 18
+    # - name: npm install -g appdmg
+    #   shell: bash
+    #   run: npm install -g appdmg
     
-    - name: Build dmg
-      shell: bash
-      run: appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
-      working-directory: installers/dmg_creator
+    # - name: Build dmg
+    #   shell: bash
+    #   run: appdmg installers/dmg_creator/config.json installers/dmg_creator/dohc_bible_ppt.dmg
 
-    - name: Archive Release
-      uses: thedoctor0/zip-release@master
-      with:
-        type: 'zip'
-        filename: dohc_bible_ppt_macos.dmg.zip
-        directory: installers/dmg_creator
-          
-    - name: macOS Release
-      uses: softprops/action-gh-release@v2
-      if: startsWith(github.ref, 'refs/tags/')
-      env:
-          GITHUB_TOKEN: ${{ inputs.token }}
-      with:
-        files: installers/dmg_creator/dohc_bible_ppt.dmg.zip
-
-
-
-
-    #         - name: Archive Release
+    # - name: Archive Release
     #   uses: thedoctor0/zip-release@master
     #   with:
     #     type: 'zip'
-    #     filename: DohcBiblePpt-${{inputs.ref_name}}-macos.zip
-    #     directory: build/macos/Build/Products/Release
+    #     filename: dohc_bible_ppt_macos.dmg.zip
+    #     directory: installers/dmg_creator
           
     # - name: macOS Release
     #   uses: softprops/action-gh-release@v2
@@ -77,4 +74,22 @@ runs:
     #   env:
     #       GITHUB_TOKEN: ${{ inputs.token }}
     #   with:
-    #     files: build/macos/Build/Products/Release/DohcBiblePpt-${{inputs.ref_name}}-macos.zip
+    #     files: installers/dmg_creator/dohc_bible_ppt.dmg.zip
+
+
+
+
+    # #         - name: Archive Release
+    # #   uses: thedoctor0/zip-release@master
+    # #   with:
+    # #     type: 'zip'
+    # #     filename: DohcBiblePpt-${{inputs.ref_name}}-macos.zip
+    # #     directory: build/macos/Build/Products/Release
+          
+    # # - name: macOS Release
+    # #   uses: softprops/action-gh-release@v2
+    # #   if: startsWith(github.ref, 'refs/tags/')
+    # #   env:
+    # #       GITHUB_TOKEN: ${{ inputs.token }}
+    # #   with:
+    # #     files: build/macos/Build/Products/Release/DohcBiblePpt-${{inputs.ref_name}}-macos.zip
