@@ -22,11 +22,11 @@ runs:
       uses: thedoctor0/zip-release@master
       with:
         type: 'zip'
-        filename: DohcBiblePpt-${{input.ref_name}}-macos.zip
+        filename: DohcBiblePpt-${{inputs.ref_name}}-macos.zip
         directory: build/macos/Build/Products/Release
           
     - name: macOS Release
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: build/macos/Build/Products/Release/DohcBiblePpt-${{input.ref_name}}-macos.zip
+        files: build/macos/Build/Products/Release/DohcBiblePpt-${{inputs.ref_name}}-macos.zip
