@@ -10,10 +10,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Enable macOS build
-        shell: bash
-        run: flutter config --enable-macos-desktop
-
     - name: Build artifacts
         shell: bash
         run: flutter build macos --release
