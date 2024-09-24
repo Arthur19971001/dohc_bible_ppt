@@ -3,8 +3,8 @@ name: Macos Build Release 🚀
 on:
   workflow_dispatch:
   push:
-    branches:
-      - feature/cicd
+    tags:
+      - 'v*.*.*'
 
 jobs:
   Macos-Build-Release:
