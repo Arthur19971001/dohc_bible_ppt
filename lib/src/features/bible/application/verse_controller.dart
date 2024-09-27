@@ -37,6 +37,7 @@ class VerseController extends _$VerseController {
   }
 
   Future<void> findByUserType(String customSearch) async {
+    final replaceCustomSearch = customSearch.replaceAll(':', '장');
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final convertList = customSearch.trim().split(',');
@@ -81,7 +82,7 @@ class VerseController extends _$VerseController {
 
       await ref
           .read(pptControllerProvider.notifier)
-          .generatePpt('$customSearch.pptx', gaeVerses, nivVerses);
+          .generatePpt('$replaceCustomSearch.pptx', gaeVerses, nivVerses);
       return [...gaeVerses, ...nivVerses];
     });
   }
