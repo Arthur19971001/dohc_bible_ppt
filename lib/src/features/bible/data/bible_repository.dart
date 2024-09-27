@@ -1,14 +1,13 @@
 import 'dart:io';
 
 import 'package:dart_pptx/dart_pptx.dart';
-import 'package:open_document/open_document.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import '../../../bible_db_provider.dart';
+import '../contents.dart';
 import '../domain/domain.dart';
 import 'bible_api_exception.dart';
 
@@ -55,48 +54,31 @@ class BibleRepository {
   }
 
   Future<void> generatePpt(
-      List<Verse> gaeVerses, List<Verse> nivVerses, Bible bible) async {
+      List<Verse> gaeVerses, List<Verse> nivVerses, String fileName) async {
     final ppt = PowerPoint();
 
     for (var i = 0; i < gaeVerses.length; i++) {
       ppt.addTitleOnlySlide(
-        title: '''
-          ${gaeVerses[i].content}
-
-          ${nivVerses[i].content}
-        '''
-            .toTextValue(),
+        title: bibleContent(gaeVerses[i], nivVerses[i]).toTextValue(),
       );
     }
 
     final bytes = await ppt.save();
     if (bytes != null) {
-      if (Platform.isWindows) {
-        final downloadDirectory = await getDownloadsDirectory();
+      final downloadDirectory = await getDownloadsDirectory();
 
-        final filePath = join(
-          downloadDirectory!.path,
-          '${bible.name}${gaeVerses.first.cnum}장${gaeVerses.first.vnum}절-${gaeVerses.last.cnum}장${gaeVerses.last.vnum}절.pptx',
-        );
+      final filePath = join(
+        downloadDirectory!.path,
+        fileName,
+      );
 
-        final file = File(filePath)..writeAsBytesSync(bytes);
+      final file = File(filePath);
 
-        await OpenDocument.openDocument(filePath: file.path);
-      } else {
-        await Share.shareXFiles(
-          [
-            XFile.fromData(
-              bytes,
-              name: 'bible_generator.pptx',
-              mimeType:
-                  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-              lastModified: DateTime.now(),
-              length: bytes.length,
-            ),
-          ],
-          text: 'Presentation',
-        );
+      if (file.existsSync()) {
+        await file.delete();
       }
+
+      file.writeAsBytesSync(bytes);
     }
   }
 

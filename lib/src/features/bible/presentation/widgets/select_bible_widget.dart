@@ -22,8 +22,6 @@ class SelectBibleWidget extends ConsumerWidget {
     final TextEditingController lastChapterTextEditCtr =
         TextEditingController(text: '1');
 
-    final verseController = ref.watch(verseControllerProvider.notifier);
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -80,15 +78,15 @@ class SelectBibleWidget extends ConsumerWidget {
             defaultSeparator,
             ElevatedButton(
               onPressed: () async {
-                await verseController.findByChapter(
-                  bible,
-                  int.parse(firstVerseTextEditCtr.text),
-                  int.parse(firstChapterTextEditCtr.text),
-                  int.parse(lastVerseTextEditCtr.text),
-                  int.parse(lastChapterTextEditCtr.text),
-                );
+                await ref.read(verseControllerProvider.notifier).findByChapter(
+                      bible,
+                      int.parse(firstVerseTextEditCtr.text),
+                      int.parse(firstChapterTextEditCtr.text),
+                      int.parse(lastVerseTextEditCtr.text),
+                      int.parse(lastChapterTextEditCtr.text),
+                    );
               },
-              child: const Text('Generate'),
+              child: const Text('생성하기'),
             ),
           ],
         ),

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../theme/layout.dart';
-import '../../application/gae_bibles_controller.dart';
+import '../../application/verse_controller.dart';
 
-class SearchBarWidget extends ConsumerWidget {
-  const SearchBarWidget({super.key});
+class CustomVerseSearchWidget extends ConsumerWidget {
+  const CustomVerseSearchWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,7 +17,7 @@ class SearchBarWidget extends ConsumerWidget {
           child: TextField(
             controller: searchCtr,
             decoration: const InputDecoration(
-              hintText: 'Search',
+              hintText: 'ex) 창세기 2:1, 창세기 1:1-2, 창세기 3:1-4:2',
               border: OutlineInputBorder(),
             ),
           ),
@@ -26,10 +26,10 @@ class SearchBarWidget extends ConsumerWidget {
         ElevatedButton(
           onPressed: () async {
             await ref
-                .read(gaeBiblesContorllerProvider.notifier)
-                .searchBiblesByName(searchCtr.text);
+                .read(verseControllerProvider.notifier)
+                .findByUserType(searchCtr.text);
           },
-          child: const Text('검색하기'),
+          child: const Text('생성하기'),
         ),
       ],
     );

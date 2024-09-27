@@ -1,25 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'bible_db_provider.dart';
+part of 'ppt_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$bibleDbProviderHash() => r'32c31ecda4212d330a67aceb36c2c0ed5bd094f8';
+String _$pptControllerHash() => r'b2b25925f0a7fbe5118eec94d42eb2fcbb8fa020';
 
-/// See also [bibleDbProvider].
-@ProviderFor(bibleDbProvider)
-final bibleDbProviderProvider = FutureProvider<Database>.internal(
-  bibleDbProvider,
-  name: r'bibleDbProviderProvider',
+/// See also [PptController].
+@ProviderFor(PptController)
+final pptControllerProvider =
+    AutoDisposeAsyncNotifierProvider<PptController, void>.internal(
+  PptController.new,
+  name: r'pptControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$bibleDbProviderHash,
+      : _$pptControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef BibleDbProviderRef = FutureProviderRef<Database>;
+typedef _$PptController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
