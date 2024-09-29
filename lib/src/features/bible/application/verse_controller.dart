@@ -3,7 +3,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../contents.dart';
 import '../data/bible_repository.dart';
 import '../domain/domain.dart';
-import 'ppt_controller.dart';
 
 part 'verse_controller.g.dart';
 
@@ -28,9 +27,7 @@ class VerseController extends _$VerseController {
 
       final fileName = generatedFileName(bible.name, gaeVerses);
 
-      await ref
-          .read(pptControllerProvider.notifier)
-          .generatePpt(fileName, gaeVerses, nivVerses);
+      await _bibleRepository.generatePpt(gaeVerses, nivVerses, fileName);
 
       return [...gaeVerses, ...nivVerses];
     });
@@ -80,9 +77,9 @@ class VerseController extends _$VerseController {
         nivVerses.addAll(findNivVerses);
       }
 
-      await ref
-          .read(pptControllerProvider.notifier)
-          .generatePpt('$replaceCustomSearch.pptx', gaeVerses, nivVerses);
+      await _bibleRepository.generatePpt(
+          gaeVerses, nivVerses, '$replaceCustomSearch.pptx');
+
       return [...gaeVerses, ...nivVerses];
     });
   }

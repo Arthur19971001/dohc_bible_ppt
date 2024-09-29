@@ -58,8 +58,19 @@ class BibleRepository {
     final ppt = PowerPoint();
 
     for (var i = 0; i < gaeVerses.length; i++) {
+      final gaeBible = (await getBibles())
+          .where((bible) =>
+              bible.vcode == 'GAE' && bible.bcode == gaeVerses[i].bcode)
+          .toList()[0];
+
+      final nivBible = (await getBibles())
+          .where((bible) =>
+              bible.vcode == 'NIV' && bible.bcode == gaeVerses[i].bcode)
+          .toList()[0];
+
       ppt.addTitleOnlySlide(
-        title: bibleContent(gaeVerses[i], nivVerses[i]).toTextValue(),
+        title: bibleContent(gaeBible, nivBible, gaeVerses[i], nivVerses[i])
+            .toTextValue(),
       );
     }
 
@@ -85,7 +96,14 @@ class BibleRepository {
   Future<List<Bible>> getBibles() async {
     final results = await db.query(
       'bibles',
-      columns: ['vcode', 'bcode', 'type', 'name', 'chapter_count'],
+      columns: [
+        'vcode',
+        'bcode',
+        'type',
+        'name',
+        'chapter_count',
+        'short_name',
+      ],
       orderBy: 'bcode asc',
     );
 
@@ -97,7 +115,14 @@ class BibleRepository {
   Future<List<Bible>> searchBiblesByName(String name) async {
     final results = await db.query(
       'bibles',
-      columns: ['vcode', 'bcode', 'type', 'name', 'chapter_count'],
+      columns: [
+        'vcode',
+        'bcode',
+        'type',
+        'name',
+        'chapter_count',
+        'short_name'
+      ],
       where: 'name like ?',
       whereArgs: ['%$name%'],
       orderBy: 'bcode asc',

@@ -6,6 +6,7 @@ class Bible {
   String type;
   String name;
   int chapterCount;
+  String shortName;
 
   Bible({
     required this.vcode,
@@ -13,6 +14,7 @@ class Bible {
     required this.type,
     required this.name,
     required this.chapterCount,
+    required this.shortName,
   });
 
   factory Bible.fromJson(String source) =>
@@ -25,6 +27,7 @@ class Bible {
       type: map['type'] as String,
       name: map['name'] as String,
       chapterCount: map['chapter_count'] as int,
+      shortName: map['short_name'] as String,
     );
   }
 
@@ -35,6 +38,7 @@ class Bible {
       type: '',
       name: '',
       chapterCount: 0,
+      shortName: '',
     );
   }
 
