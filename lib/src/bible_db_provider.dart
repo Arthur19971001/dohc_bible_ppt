@@ -16,9 +16,18 @@ Future<Database> bibleDbProvider(BibleDbProviderRef ref) async {
   final databasePath = await databaseFactory.getDatabasesPath();
   final dbPath = join(databasePath, 'holybible.db');
 
+  await _deleteOriginalDatabase(dbPath);
   await _generateDabaBaseFile(dbPath);
 
   return _openDatabase(dbPath);
+}
+
+Future<void> _deleteOriginalDatabase(String dbPath) async {
+  final file = File(dbPath);
+
+  if (file.existsSync()) {
+    file.deleteSync();
+  }
 }
 
 Future<void> _generateDabaBaseFile(String dbPath) async {
@@ -36,7 +45,7 @@ Future<Database> _openDatabase(String dbPath) async {
   if (Platform.isWindows) {
     return databaseFactory.openDatabase(
       dbPath,
-      options: OpenDatabaseOptions(version: 2),
+      options: OpenDatabaseOptions(version: 2, readOnly: true),
     );
   }
 

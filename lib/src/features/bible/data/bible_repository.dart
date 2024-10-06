@@ -86,7 +86,7 @@ class BibleRepository {
       final file = File(filePath);
 
       if (file.existsSync()) {
-        await file.delete();
+        file.deleteSync();
       }
 
       file.writeAsBytesSync(bytes);
