@@ -45,7 +45,7 @@ Future<Database> _openDatabase(String dbPath) async {
   if (Platform.isWindows) {
     return databaseFactory.openDatabase(
       dbPath,
-      options: OpenDatabaseOptions(version: 2, readOnly: true),
+      options: OpenDatabaseOptions(version: 2),
     );
   }
 
