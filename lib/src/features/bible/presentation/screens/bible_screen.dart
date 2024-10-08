@@ -7,6 +7,7 @@ import '../../application/gae_bibles_controller.dart';
 import '../../application/verse_controller.dart';
 import '../presentation.dart';
 import '../widgets/custom_verse_search_widget.dart';
+import '../widgets/option_drawer_widget.dart';
 
 class BibleScreen extends ConsumerWidget {
   const BibleScreen({super.key});
@@ -44,6 +45,7 @@ class BibleScreen extends ConsumerWidget {
 
     return MainScaffold(
       title: 'Bible',
+      drawer: const OptionDrawerWidget(),
       body: Padding(
         padding: defaultEdgeInsets,
         child: Column(

@@ -54,22 +54,34 @@ class BibleRepository {
   }
 
   Future<void> generatePpt(
-      List<Verse> gaeVerses, List<Verse> nivVerses, String fileName) async {
+      List<Verse> gaeVerses, List<Verse> nivVerses, String fileName,
+      [bool hasVersName = true]) async {
     final ppt = PowerPoint();
 
-    for (var i = 0; i < gaeVerses.length; i++) {
-      final gaeBible = (await getBibles())
-          .where((bible) =>
-              bible.vcode == 'GAE' && bible.bcode == gaeVerses[i].bcode)
-          .toList()[0];
+    final verses = gaeVerses.isEmpty ? nivVerses : gaeVerses;
 
-      final nivBible = (await getBibles())
-          .where((bible) =>
-              bible.vcode == 'NIV' && bible.bcode == gaeVerses[i].bcode)
-          .toList()[0];
+    for (var i = 0; i < verses.length; i++) {
+      final gaeBible = gaeVerses.isEmpty
+          ? null
+          : (await getBibles())
+              .where((bible) =>
+                  bible.vcode == 'GAE' && bible.bcode == verses[i].bcode)
+              .toList()[0];
+
+      final nivBible = nivVerses.isEmpty
+          ? null
+          : (await getBibles())
+              .where((bible) =>
+                  bible.vcode == 'NIV' && bible.bcode == verses[i].bcode)
+              .toList()[0];
 
       ppt.addTitleOnlySlide(
-        title: bibleContent(gaeBible, nivBible, gaeVerses[i], nivVerses[i])
+        title: bibleContent(
+                gaeBible,
+                nivBible,
+                gaeVerses.isEmpty ? null : gaeVerses[i],
+                nivVerses.isEmpty ? null : nivVerses[i],
+                hasVersName)
             .toTextValue(),
       );
     }

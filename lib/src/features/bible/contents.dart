@@ -1,8 +1,9 @@
 import 'domain/domain.dart';
 
 String bibleContent(
-    Bible gaeBible, Bible nivBible, Verse gaeVersae, Verse nivVersae) {
-  return '(${gaeBible.shortName} ${gaeVersae.cnum}-${gaeVersae.vnum}) ${gaeVersae.content}\n\n(${nivBible.shortName} ${nivVersae.cnum}-${nivVersae.vnum}) ${nivVersae.content}';
+    Bible? gaeBible, Bible? nivBible, Verse? gaeVerse, Verse? nivVerse,
+    [bool hasVersName = true]) {
+  return '${gaeVerse == null ? '' : '${hasVersName ? '(${gaeBible?.shortName} ${gaeVerse.cnum}-${gaeVerse.vnum})' : ''} ${gaeVerse.content}\n\n'} ${nivVerse == null ? '' : '${hasVersName ? '(${nivBible?.shortName} ${nivVerse.cnum}-${nivVerse.vnum})' : ''} ${nivVerse.content}'}';
 }
 
 String generatedFileName(String bibleName, List<Verse> gaeVerses) {

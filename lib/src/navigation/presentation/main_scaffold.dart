@@ -13,18 +13,19 @@ class MainScaffold extends StatelessWidget {
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final Widget body;
   final Widget? bottomNavigationBar;
+  final Widget? drawer;
 
-  const MainScaffold({
-    super.key,
-    this.title,
-    this.actions,
-    this.automaticallyImplyLeading = true,
-    this.bottom,
-    this.floatingActionButton,
-    this.floatingActionButtonLocation,
-    required this.body,
-    this.bottomNavigationBar,
-  });
+  const MainScaffold(
+      {super.key,
+      this.title,
+      this.actions,
+      this.automaticallyImplyLeading = true,
+      this.bottom,
+      this.floatingActionButton,
+      this.floatingActionButtonLocation,
+      required this.body,
+      this.bottomNavigationBar,
+      this.drawer});
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +43,7 @@ class MainScaffold extends StatelessWidget {
       floatingActionButton: floatingActionButton,
       floatingActionButtonLocation: floatingActionButtonLocation,
       bottomNavigationBar: bottomNavigationBar,
+      drawer: drawer,
       body: SafeArea(
         child: body,
       ),
