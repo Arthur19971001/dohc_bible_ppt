@@ -6,7 +6,7 @@ part of 'bible_db_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$bibleDbProviderHash() => r'32c31ecda4212d330a67aceb36c2c0ed5bd094f8';
+String _$bibleDbProviderHash() => r'723262c6198cf62f73c7d470469e81fcb55ea716';
 
 /// See also [bibleDbProvider].
 @ProviderFor(bibleDbProvider)
