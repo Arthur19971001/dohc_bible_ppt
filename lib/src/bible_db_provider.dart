@@ -16,18 +16,12 @@ Future<Database> bibleDbProvider(BibleDbProviderRef ref) async {
   final databasePath = await databaseFactory.getDatabasesPath();
   final dbPath = join(databasePath, 'holybible.db');
 
-  await _deleteOriginalDatabase(dbPath);
+  if (await databaseFactory.databaseExists(dbPath)) {
+    await databaseFactory.deleteDatabase(dbPath);
+  }
   await _generateDabaBaseFile(dbPath);
 
   return _openDatabase(dbPath);
-}
-
-Future<void> _deleteOriginalDatabase(String dbPath) async {
-  final file = File(dbPath);
-
-  if (file.existsSync()) {
-    file.deleteSync();
-  }
 }
 
 Future<void> _generateDabaBaseFile(String dbPath) async {

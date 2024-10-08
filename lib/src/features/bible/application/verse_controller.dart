@@ -3,6 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../contents.dart';
 import '../data/bible_repository.dart';
 import '../domain/domain.dart';
+import 'option_filter_controller.dart';
 
 part 'verse_controller.g.dart';
 
@@ -20,6 +21,7 @@ class VerseController extends _$VerseController {
       int lastCnum, int lastVnum) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
+      final optionFilter = ref.read(optionFilterControllerProvider);
       final gaeVerses = await _bibleRepository.findByChapter(
           'GAE', bible.bcode, firstCnum, firstVnum, lastCnum, lastVnum);
       final nivVerses = await _bibleRepository.findByChapter(
@@ -27,7 +29,18 @@ class VerseController extends _$VerseController {
 
       final fileName = generatedFileName(bible.name, gaeVerses);
 
-      await _bibleRepository.generatePpt(gaeVerses, nivVerses, fileName);
+      await _bibleRepository.generatePpt(
+        (optionFilter.selectBibleVersion == SelectBibleVersion.gae ||
+                optionFilter.selectBibleVersion == SelectBibleVersion.both)
+            ? gaeVerses
+            : [],
+        (optionFilter.selectBibleVersion == SelectBibleVersion.niv ||
+                optionFilter.selectBibleVersion == SelectBibleVersion.both)
+            ? nivVerses
+            : [],
+        fileName,
+        optionFilter.hasVerseName,
+      );
 
       return [...gaeVerses, ...nivVerses];
     });
@@ -41,6 +54,9 @@ class VerseController extends _$VerseController {
 
       final List<Verse> gaeVerses = [];
       final List<Verse> nivVerses = [];
+
+      final optionFilter = ref.read(optionFilterControllerProvider);
+
       for (final list in convertList) {
         final verse = list.trim().split(' ');
 
@@ -78,7 +94,16 @@ class VerseController extends _$VerseController {
       }
 
       await _bibleRepository.generatePpt(
-          gaeVerses, nivVerses, '$replaceCustomSearch.pptx');
+          (optionFilter.selectBibleVersion == SelectBibleVersion.gae ||
+                  optionFilter.selectBibleVersion == SelectBibleVersion.both)
+              ? gaeVerses
+              : [],
+          (optionFilter.selectBibleVersion == SelectBibleVersion.niv ||
+                  optionFilter.selectBibleVersion == SelectBibleVersion.both)
+              ? nivVerses
+              : [],
+          '$replaceCustomSearch.pptx',
+          optionFilter.hasVerseName);
 
       return [...gaeVerses, ...nivVerses];
     });

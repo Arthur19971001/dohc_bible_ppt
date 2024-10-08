@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'src/app.dart';
 import 'src/widgetbook/widgetbook_toggle.dart';
 
-void main() {
+void main() async {
   runApp(
     const ProviderScope(
       child: WidgetbookToggle(

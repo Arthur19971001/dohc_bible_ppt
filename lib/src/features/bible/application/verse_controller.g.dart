@@ -6,7 +6,7 @@ part of 'verse_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$verseControllerHash() => r'54293e6603331db68d01237779b7e1764f4fa6ee';
+String _$verseControllerHash() => r'7582ad0daacef51c62f28521e60ae77803502a21';
 
 /// See also [VerseController].
 @ProviderFor(VerseController)
