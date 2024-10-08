@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../bible_db_provider.dart';
+import '../screen_size_provider.dart';
 
 part 'app_startup_provider.g.dart';
 
@@ -12,10 +13,12 @@ Future<void> appStartup(AppStartupRef ref) async {
   ref.onDispose(() {
     // ensure dependent providers are disposed as well
     ref.invalidate(bibleDbProviderProvider);
+    ref.invalidate(screenSizeProviderProvider);
   });
 
   // App initialization code
   await Future.wait<void>([
     ref.watch(bibleDbProviderProvider.future),
+    ref.watch(screenSizeProviderProvider.future),
   ]);
 }
