@@ -49,7 +49,7 @@ dependencies:
   path_provider: ^2.1.4
   sqflite_common_ffi: ^2.3.3
   toggle_switch: ^2.3.0
-  desktop_window: ^0.4.1
+  window_manager: ^0.4.2
 
 dev_dependencies:
   flutter_test:
