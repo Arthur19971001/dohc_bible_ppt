@@ -7,7 +7,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import '../../../bible_db_provider.dart';
-import '../contents.dart';
 import '../domain/domain.dart';
 import 'bible_api_exception.dart';
 
@@ -60,31 +59,26 @@ class BibleRepository {
 
     final verses = gaeVerses.isEmpty ? nivVerses : gaeVerses;
 
-    for (var i = 0; i < verses.length; i++) {
-      final gaeBible = gaeVerses.isEmpty
-          ? null
-          : (await getBibles())
-              .where((bible) =>
-                  bible.vcode == 'GAE' && bible.bcode == verses[i].bcode)
-              .toList()[0];
+    // for (var i = 0; i < verses.length; i++) {
+    //   final gaeBible = gaeVerses.isEmpty
+    //       ? null
+    //       : (await getBibles())
+    //           .where((bible) =>
+    //               bible.vcode == 'GAE' && bible.bcode == verses[i].bcode)
+    //           .toList()[0];
 
-      final nivBible = nivVerses.isEmpty
-          ? null
-          : (await getBibles())
-              .where((bible) =>
-                  bible.vcode == 'NIV' && bible.bcode == verses[i].bcode)
-              .toList()[0];
+    //   final nivBible = nivVerses.isEmpty
+    //       ? null
+    //       : (await getBibles())
+    //           .where((bible) =>
+    //               bible.vcode == 'NIV' && bible.bcode == verses[i].bcode)
+    //           .toList()[0];
 
-      ppt.addTitleOnlySlide(
-        title: bibleContent(
-                gaeBible,
-                nivBible,
-                gaeVerses.isEmpty ? null : gaeVerses[i],
-                nivVerses.isEmpty ? null : nivVerses[i],
-                hasVersName)
-            .toTextValue(),
-      );
-    }
+    ppt.addIntroSlide();
+    ppt.addBarcodeSlide();
+    ppt.addCallingSlide();
+    ppt.addBlankSlide();
+    // }
 
     final bytes = await ppt.save();
     if (bytes != null) {

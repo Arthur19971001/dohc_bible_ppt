@@ -1,0 +1,16 @@
+/// This file is generated, do not edit!
+/// See `bin/copy.dart` for more information.
+
+/// Path: ./bin/template/ppt/slides/_rels/slide1.xml.rels.mustache
+const String template =
+    r'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+    {{#imagePath}}
+    <Relationship Id="rId2"
+                  Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
+                  Target="../media/{{.}}" />
+    {{/imagePath}}
+    <Relationship Id="rId1"
+                  Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout"
+                  Target="../slideLayouts/{{slideLayoutPath}}.xml" />
+</Relationships>''';
