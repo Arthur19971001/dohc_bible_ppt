@@ -7,8 +7,8 @@ extension BuildContextThemeExtensions on BuildContext {
   /// Get the [ColorScheme]
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
 
-  /// Get the [InputDecorationTheme]
-  InputDecorationTheme get inputDecorationTheme =>
+  /// Get the [InputDecorationThemeData]
+  InputDecorationThemeData get inputDecorationTheme =>
       Theme.of(this).inputDecorationTheme;
 
   /// Get the [TextTheme]

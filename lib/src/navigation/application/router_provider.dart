@@ -22,7 +22,7 @@ final _startupRoute = GoRoute(
 );
 
 @riverpod
-RouterConfig<Object>? router(RouterRef ref) {
+RouterConfig<Object>? router(Ref ref) {
   final appStartupState = ref.watch(appStartupProvider);
 
   if (appStartupState.isLoading || appStartupState.hasError) {

@@ -14,7 +14,7 @@ import 'bible_api_exception.dart';
 part 'bible_repository.g.dart';
 
 @Riverpod(keepAlive: true)
-BibleRepository bibleRepository(BibleRepositoryRef ref) {
+BibleRepository bibleRepository(Ref ref) {
   final db = ref.watch(bibleDbProviderProvider).requireValue;
 
   return BibleRepository(db);

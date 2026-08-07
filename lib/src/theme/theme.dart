@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 /// todo: update and modify as needed for the design
 
 class AppTheme {
-  static const CardTheme _cardTheme =
-      CardTheme(margin: EdgeInsets.fromLTRB(18, 0, 18, 24));
+  static const CardThemeData _cardTheme =
+      CardThemeData(margin: EdgeInsets.fromLTRB(18, 0, 18, 24));
   static final InputDecorationTheme _inputDecorationTheme =
       InputDecorationTheme(
     border: OutlineInputBorder(
@@ -35,7 +35,6 @@ class AppTheme {
         bottomAppBarElevation: 2.0,
         subThemesData: const FlexSubThemesData(
           blendOnLevel: 8,
-          useTextTheme: true,
           useM2StyleDividerInM3: true,
           adaptiveElevationShadowsBack: FlexAdaptive.all(),
           adaptiveAppBarScrollUnderOff: FlexAdaptive.excludeWebAndroidFuchsia(),
@@ -92,7 +91,6 @@ class AppTheme {
           navigationRailBackgroundSchemeColor: SchemeColor.surface,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: true,
       );
   static ThemeData _toLight() => FlexThemeData.light(
         scheme: FlexScheme.gold,
@@ -102,8 +100,6 @@ class AppTheme {
         bottomAppBarElevation: 2.0,
         subThemesData: const FlexSubThemesData(
           blendOnLevel: 6,
-          blendOnColors: false,
-          useTextTheme: true,
           useM2StyleDividerInM3: true,
           adaptiveRemoveElevationTint: FlexAdaptive.excludeWebAndroidFuchsia(),
           adaptiveElevationShadowsBack: FlexAdaptive.excludeWebAndroidFuchsia(),
@@ -161,7 +157,6 @@ class AppTheme {
           navigationRailBackgroundSchemeColor: SchemeColor.surface,
         ),
         visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: true,
         // To use the Playground font, add GoogleFonts package and uncomment
         // fontFamily: GoogleFonts.notoSans().fontFamily,
       );

@@ -8,7 +8,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 part 'bible_db_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-Future<Database> bibleDbProvider(BibleDbProviderRef ref) async {
+Future<Database> bibleDbProvider(Ref ref) async {
   sqfliteFfiInit();
 
   databaseFactory = databaseFactoryFfi;

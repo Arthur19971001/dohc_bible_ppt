@@ -1,5 +1,5 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/3.24.3",
+  "dart.flutterSdkPath": "~/fvm/versions/3.38.1",
   "[dart]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",

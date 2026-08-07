@@ -6,21 +6,46 @@ part of 'verse_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(VerseController)
+final verseControllerProvider = VerseControllerProvider._();
+
+final class VerseControllerProvider
+    extends $AsyncNotifierProvider<VerseController, List<Verse>> {
+  VerseControllerProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'verseControllerProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$verseControllerHash();
+
+  @$internal
+  @override
+  VerseController create() => VerseController();
+}
+
 String _$verseControllerHash() => r'7582ad0daacef51c62f28521e60ae77803502a21';
 
-/// See also [VerseController].
-@ProviderFor(VerseController)
-final verseControllerProvider =
-    AutoDisposeAsyncNotifierProvider<VerseController, List<Verse>>.internal(
-  VerseController.new,
-  name: r'verseControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$verseControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$VerseController = AutoDisposeAsyncNotifier<List<Verse>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+abstract class _$VerseController extends $AsyncNotifier<List<Verse>> {
+  FutureOr<List<Verse>> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<AsyncValue<List<Verse>>, List<Verse>>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<List<Verse>>, List<Verse>>,
+        AsyncValue<List<Verse>>,
+        Object?,
+        Object?>;
+    element.handleCreate(ref, build);
+  }
+}

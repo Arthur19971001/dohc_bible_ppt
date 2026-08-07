@@ -6,22 +6,47 @@ part of 'gae_bibles_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(GaeBiblesContorller)
+final gaeBiblesContorllerProvider = GaeBiblesContorllerProvider._();
+
+final class GaeBiblesContorllerProvider
+    extends $AsyncNotifierProvider<GaeBiblesContorller, List<Bible>> {
+  GaeBiblesContorllerProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'gaeBiblesContorllerProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$gaeBiblesContorllerHash();
+
+  @$internal
+  @override
+  GaeBiblesContorller create() => GaeBiblesContorller();
+}
+
 String _$gaeBiblesContorllerHash() =>
     r'c466b31659fbe71f5986e56707d7b88933e1c1be';
 
-/// See also [GaeBiblesContorller].
-@ProviderFor(GaeBiblesContorller)
-final gaeBiblesContorllerProvider =
-    AutoDisposeAsyncNotifierProvider<GaeBiblesContorller, List<Bible>>.internal(
-  GaeBiblesContorller.new,
-  name: r'gaeBiblesContorllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$gaeBiblesContorllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$GaeBiblesContorller = AutoDisposeAsyncNotifier<List<Bible>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+abstract class _$GaeBiblesContorller extends $AsyncNotifier<List<Bible>> {
+  FutureOr<List<Bible>> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final ref = this.ref as $Ref<AsyncValue<List<Bible>>, List<Bible>>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<List<Bible>>, List<Bible>>,
+        AsyncValue<List<Bible>>,
+        Object?,
+        Object?>;
+    element.handleCreate(ref, build);
+  }
+}

@@ -6,23 +6,48 @@ part of 'app_startup_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appStartupHash() => r'c781c77ddad0fb52c68c8dec38a3dc0d98b5cb71';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Provider to manage asynchronous app initialization
+///
+/// Based on: https://codewithandrea.com/articles/robust-app-initialization-riverpod/
+
+@ProviderFor(appStartup)
+final appStartupProvider = AppStartupProvider._();
 
 /// Provider to manage asynchronous app initialization
 ///
 /// Based on: https://codewithandrea.com/articles/robust-app-initialization-riverpod/
-///
-/// Copied from [appStartup].
-@ProviderFor(appStartup)
-final appStartupProvider = FutureProvider<void>.internal(
-  appStartup,
-  name: r'appStartupProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appStartupHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-typedef AppStartupRef = FutureProviderRef<void>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+final class AppStartupProvider
+    extends $FunctionalProvider<AsyncValue<void>, void, FutureOr<void>>
+    with $FutureModifier<void>, $FutureProvider<void> {
+  /// Provider to manage asynchronous app initialization
+  ///
+  /// Based on: https://codewithandrea.com/articles/robust-app-initialization-riverpod/
+  AppStartupProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'appStartupProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$appStartupHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<void> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<void> create(Ref ref) {
+    return appStartup(ref);
+  }
+}
+
+String _$appStartupHash() => r'7bc42b0adcc139e9cb3042f29ec2aaa8b9d8fe99';

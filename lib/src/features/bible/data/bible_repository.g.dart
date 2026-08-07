@@ -6,20 +6,45 @@ part of 'bible_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$bibleRepositoryHash() => r'4239d3a3355bb55e2adf0396c5ac121ed0b81088';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [bibleRepository].
 @ProviderFor(bibleRepository)
-final bibleRepositoryProvider = Provider<BibleRepository>.internal(
-  bibleRepository,
-  name: r'bibleRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$bibleRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final bibleRepositoryProvider = BibleRepositoryProvider._();
 
-typedef BibleRepositoryRef = ProviderRef<BibleRepository>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+final class BibleRepositoryProvider extends $FunctionalProvider<BibleRepository,
+    BibleRepository, BibleRepository> with $Provider<BibleRepository> {
+  BibleRepositoryProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'bibleRepositoryProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$bibleRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<BibleRepository> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  BibleRepository create(Ref ref) {
+    return bibleRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(BibleRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<BibleRepository>(value),
+    );
+  }
+}
+
+String _$bibleRepositoryHash() => r'4239d3a3355bb55e2adf0396c5ac121ed0b81088';
